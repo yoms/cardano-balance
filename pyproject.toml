@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cardano-balance"
+name = "cardanobalance"
 version = "0.1.0"
 description = "Display the cardano balance for a given staking adress"
 authors = ["yoms <hormiere.guillaume@gmail.com>"]
@@ -12,8 +12,28 @@ click = "^7.1.2"
 tabulate = "^0.8.7"
 requests = "^2.27.1"
 
+[tool.black]
+line-length = 88
+skip-string-normalization = true
+
+[tool.poetry.scripts]
+cardanobalance = "cardanobalance.app:main"
+
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+flake8 = "^3.9.2"
+pylint = "^2.9.6"
+mypy = "^0.910"
+pre-commit = "^2.14.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+ignore_missing_imports = false
+namespace_packages = true
+
+[[tool.mypy.overrides]]
+module = "click.*"
+ignore_missing_imports = true
